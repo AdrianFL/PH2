@@ -1,0 +1,40 @@
+*{
+	box-shadow: border-box;
+}
+html{
+	background-color: #fff;
+}
+body{
+	min-width: 320px;
+	max-width: 960px;
+	background-color: #4167E3;
+	margin:0 auto;
+	padding:0;
+}
+	body>header{
+		background-color: #FF7F17;
+		text-align: center;
+		overflow: hidden;
+		
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+		body>nav>ul{
+			padding:0;
+			margin:0 auto;
+			width:100%;
+		}
+			body>nav>ul>li{
+				display:inline;
+				float:left;
+			}
+				body>nav>ul>li>a{
+					display: inline-block;
+					text-align:center;
+					line-height: 40px;
+
+				}
+				body>nav>ul>li:last-child>a{
+					border-right: 0;
+				}
