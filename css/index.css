@@ -25,7 +25,7 @@ body{
 		body>header>img{
 			align-self:center;
 		}
-		nav{
+		body>nav{
 			max-height: 1.5em;
 			overflow:hidden;
 			border-top: .1em solid #234;
@@ -70,6 +70,9 @@ body{
 		#ckb-menu:checked+nav>ul>li:nth-of-type(1)>label>span{
 			transform:rotate(180deg);
 		}
+		body>main{
+			margin-top:.2em;
+		}
 			body>main>section:nth-of-type(1)>article{
 				overflow:hidden;
 				text-align:justify;
@@ -109,10 +112,37 @@ body{
 				border:1px solid #234;
 				margin-top: .1em;
 			}
+			body>nav>ul{
+				overflow:hidden;
+				text-align:center;
+				font-size:.8em;
+			}
+			body>nav>ul>li:first-of-type{
+				display:none;
+			}
+			body>nav>ul>li{
+				display:inline-block;
+				padding:0;
+				border-right: .1em solid #234;
+				margin:0;
+			}
+			body>nav>ul>li:last-of-type{
+				border-right: 0;
+			}
+			body>nav>ul>li>a:hover{
+				border:0;
+			}
+			body>nav>ul>li>a{
+				padding:.1em;
+				text-decoration:none;
+			}
 }
 
 @media all and (min-width:740px){
 			body>main>section:nth-of-type(1)>article{
 				width:30%;
+			}
+			body>nav>ul{
+				font-size:1em;
 			}
 }
