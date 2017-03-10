@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
 *{
-	box-shadow: border-box;
+	box-sizing: border-box;
+	font-family: 'Lato', sans-serif;
 }
 html{
 	background-color: #fff;
-	max-width:100%;
 }
 body{
 	min-width: 320px;
@@ -24,16 +25,65 @@ body{
 		body>header>img{
 			align-self:center;
 		}
-
-			body>main>section>article{
+		nav{
+			max-height: 1.5em;
+			overflow:hidden;
+			border-top: .1em solid #234;
+			border-bottom: .1em solid #234;
+			transition: max-height 1s;
+		}
+			body>nav>ul{
+				list-style:none;
+				margin:0;
+				padding:0;
+			}
+				body>nav>ul>li{
+					text-align: center;
+					margin:.1em 0;
+				}
+				body>nav>ul>li>a{
+					display:block;
+				}
+				body>nav>ul>li>a:hover{
+					background-color:#6FD2F2;
+					border-top:1px solid #234;
+					border-bottom: 1px solid #234;
+				}
+				body>nav>ul>li:last-of-type{
+					margin-bottom:.3em;
+				}
+				body>nav>ul>li:nth-of-type(1)>label>span{
+					display:inline-block;
+					transform:rotate(90deg);
+					transition: transform .5s;
+				}
+					body>nav>ul>li>label{
+						display:block;
+						cursor:pointer;
+					}
+		#ckb-menu{
+			display:none;
+		}
+		#ckb-menu:checked+nav{
+			max-height: 10em;
+		}
+		#ckb-menu:checked+nav>ul>li:nth-of-type(1)>label>span{
+			transform:rotate(180deg);
+		}
+			body>main>section:nth-of-type(1)>article{
 				overflow:hidden;
 				text-align:justify;
 				padding:.5em;
 				margin:0 auto;
 			}
-				body>main>section>article>h2{
+				body>main>section:nth-of-type(1)>article>h2{
 					text-align:center;
 				}
+			body>main>section:nth-of-type(2)>article{
+				display:block;
+				width:90%;
+				padding: 0 1em;
+			}
 	body>footer{
 		background-color:#FF7F17;
 		padding: 1em 0;
@@ -52,7 +102,7 @@ body{
 			display:flex;
 			flex-wrap: wrap;
 		}
-			body>main>section>article{
+			body>main>section:nth-of-type(1)>article{
 				width:46%;
 				display:flex;
 				flex-direction: column;
@@ -62,7 +112,7 @@ body{
 }
 
 @media all and (min-width:740px){
-			body>main>section>article{
+			body>main>section:nth-of-type(1)>article{
 				width:30%;
 			}
 }
