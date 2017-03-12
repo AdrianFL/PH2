@@ -21,6 +21,7 @@ body{
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		margin-top:1.5em;
 	}
 		body>header>img{
 			align-self:center;
@@ -31,6 +32,11 @@ body{
 			border-top: .1em solid #234;
 			border-bottom: .1em solid #234;
 			transition: max-height 1s;
+			position:fixed;
+			top:0;
+			z-index: 1;
+			width:100%;
+			background-color:#4167E3;
 		}
 			body>nav>ul{
 				list-style:none;
@@ -193,6 +199,9 @@ body{
 				border:1px solid #234;
 				margin-top: .1em;
 			}
+		body>nav{
+			position:static;
+		}
 			body>nav>ul{
 				overflow:hidden;
 				text-align:center;
