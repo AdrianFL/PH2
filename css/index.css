@@ -21,6 +21,7 @@ body{
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		margin-top:1.5em;
 	}
 		body>header>img{
 			align-self:center;
@@ -31,6 +32,11 @@ body{
 			border-top: .1em solid #234;
 			border-bottom: .1em solid #234;
 			transition: max-height 1s;
+			position:fixed;
+			top:0;
+			z-index: 1;
+			width:100%;
+			background-color:#4167E3;
 		}
 			body>nav>ul{
 				list-style:none;
@@ -78,10 +84,62 @@ body{
 				text-align:justify;
 				padding:.5em;
 				margin:0 auto;
+				width:100%;
 			}
 				body>main>section:nth-of-type(1)>article>h2{
 					text-align:center;
 				}
+				body>main>section:nth-of-type(1)>article>figure{
+					position:relative;
+					overflow:hidden;
+				}
+				body>main>section:nth-of-type(1)>article>figure>img{
+					max-width: 100%;
+					opacity:1;
+					transition:opacity 1s;
+				}
+				body>main>section:nth-of-type(1)>article>figure>figcaption{
+					position:absolute;
+					top:0;
+					left:0;
+					opacity:0;
+					transition: opacity 1s;
+					font-size: .8em;
+				}
+				body>main>section:nth-of-type(1)>article>figure>footer{
+					position:absolute;
+					bottom:0;
+					left:0;
+					opacity:0;
+					transition: opacity 1s;
+					font-size: .8em;
+					z-index: 1;
+					background-color: #fff;
+					display:block;
+					width:100%;
+				}
+				body>main>section:nth-of-type(1)>article>figure:hover>img{
+					opacity:.3;
+				}
+				body>main>section:nth-of-type(1)>article>figure:hover>figcaption{
+					opacity:1;
+				}
+				body>main>section:nth-of-type(1)>article>figure:hover>footer{
+					opacity:1;
+				}				
+				body>main>section:nth-of-type(1)>article>div>p{
+					font-size: .6em;
+				}
+					body>main>section:nth-of-type(1)>article>h2>a{
+						color:#000;
+					}
+				body>main>section:nth-of-type(1)>article>footer>p{
+						display:inline-block;
+						font-size: .6em;
+				}
+					body>main>section:nth-of-type(1)>article>footer>p:nth-of-type(2){
+						float:right;
+					}
 				body>main>section:nth-of-type(1)>footer>button:nth-of-type(1){
 					margin-left: 1.3em;
 				}
@@ -141,6 +199,9 @@ body{
 				border:1px solid #234;
 				margin-top: .1em;
 			}
+		body>nav{
+			position:static;
+		}
 			body>nav>ul{
 				overflow:hidden;
 				text-align:center;
@@ -168,6 +229,7 @@ body{
 			body>main>section:nth-of-type(2)>article{
 				border:1px solid #234;
 				margin:0 auto;
+				padding:0 1em;
 			}
 			body>main>section:nth-of-type(2){
 				margin-top: 1em;
