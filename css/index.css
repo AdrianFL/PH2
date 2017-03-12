@@ -199,6 +199,9 @@ body{
 	body>main>form>input{
 		margin-left:1em;
 	}
+	body>main>form>input:hover{
+		background-color:#FFAF0A;
+	}
 		body>main>form>div{
 			margin-left: 1em;
 		}
@@ -215,6 +218,9 @@ body{
 			display:block;
 			width:30em;
 			height:5em;
+		}
+		body>main>form>textarea:hover{
+			background-color:#FFAF0A;
 		}
 		body>main>form>button{
 			display:block;
