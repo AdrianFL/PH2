@@ -32,16 +32,16 @@
 <form>
      <h2>Registro</h2>
 
-     <label><b>Nombre de usuario:</b></label>
-     <input type="text" name="Nick" autofocus required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9]+$/">
-     <label><b>Nombre:</b></label>
-     <input type="text" name="Name" required>
-     <label><b>Contrase&ntilde;a:</b></label>
-     <input type="password" name="Password"  required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/">
-     <label><b>Repite la contrase&ntilde;a:</b></label>
-     <input class="input-registro" type="password" name="Password2" required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/">
-     <label><b>Correo:</b></label>
-     <input class="input-registro" type="text" name="Mail" required>
+     <label for="nick"><b>Nombre de usuario:</b></label>
+     <input type="text" name="Nick" autofocus required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9]+$/" id="nick" placeholder="Nick">
+     <label for="nombre"><b>Nombre:</b></label>
+     <input type="text" name="Name" required id="nombre" placeholder="Nombre">
+     <label for="pass"><b>Contrase&ntilde;a:</b></label>
+     <input type="password" name="Password"  required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/" id="pass" placeholder="Contraseña">
+     <label for="pass2"><b>Repite la contrase&ntilde;a:</b></label>
+     <input class="input-registro" type="password" name="Password2" required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/" id="pass2" placeholder="Repite contraseña">
+     <label for="mail"><b>Correo:</b></label>
+     <input class="input-registro" type="text" name="Mail" required id="mail" placeholder="Email">
      <input type="submit" value="Registrarse">
 </form>
         
