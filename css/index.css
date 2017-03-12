@@ -94,8 +94,6 @@ body{
 	}
 
 @media all and (min-width:480px){
-
-
 		body>header{
 			flex-direction: row;
 			justify-content: space-between;
@@ -138,10 +136,6 @@ body{
 				padding:.1em;
 				text-decoration:none;
 			}
-
-			body>main>form{
-		text-align: center;
-	}
 }
 
 @media all and (min-width:740px){
