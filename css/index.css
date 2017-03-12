@@ -102,28 +102,33 @@ body{
 				body>main>section:nth-of-type(1)>article>figure{
 					position:relative;
 					overflow:hidden;
+					max-width:100%;
 				}
 				body>main>section:nth-of-type(1)>article>figure>img{
-					max-width: 100%;
+					max-width:100%;
 					opacity:1;
 					transition:opacity 1s;
+					z-index: 1;
 				}
-				body>main>section:nth-of-type(1)>article>figure>figcaption:nth-of-type(1){
+				body>main>section:nth-of-type(1)>article>figure>figcaption{
 					position:absolute;
 					top:0;
 					left:0;
 					opacity:0;
 					transition: opacity 1s;
 					font-size: .8em;
+					max-height:100%;
+					z-index: 1;
+					height:100%;
 				}
-				body>main>section:nth-of-type(1)>article>figure>figcaption:nth-of-type(2){
+				body>main>section:nth-of-type(1)>article>figure>figcaption>footer{
 					position:absolute;
 					bottom:0;
 					left:0;
 					opacity:0;
 					transition: opacity 1s;
 					font-size: .8em;
-					z-index: 1;
+					z-index: 10;
 					background-color: #fff;
 					display:block;
 					width:100%;
@@ -134,7 +139,7 @@ body{
 				body>main>section:nth-of-type(1)>article>figure:hover>figcaption{
 					opacity:1;
 				}
-				body>main>section:nth-of-type(1)>article>figure:hover>footer{
+				body>main>section:nth-of-type(1)>article>figure:hover>figcaption>footer{
 					opacity:1;
 				}				
 				body>main>section:nth-of-type(1)>article>div>p{
