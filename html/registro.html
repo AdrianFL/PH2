@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1" />     <link rel="stylesheet" href="../css/index.css">
+     <link rel="stylesheet" href="../fontello/css/fontello.css">
+     <title>Sandbox</title>
+</head>
+<body>
+     <header>
+          <img src="../resources/logo.jpg" alt="Logotipo">
+          <div>
+               <h1>Sandbox</h1>
+               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, ullam.</p>
+          </div>
+     </header>
+     <input type="checkbox" id="ckb-menu">
+     <nav>
+          <ul>
+               <li><label for="ckb-menu"><span>&equiv;</span></label></li>
+               <li><a href="index.html"><span class="icon-home"></span>Indice</a></li>
+               <li><a href="buscar.html"><span class="icon-search"></span>Buscar</a></li>
+               <li><a href="login.html"><span class="icon-login"></span>Login</a></li>
+               <li><a href="registro.html"><span class="icon-user-plus"></span>Registro</a></li>
+               <li><a href=""><span class="icon-logout"></span>Logout</a></li>
+               <li><a href="nueva-entrada.html"><span class="icon-doc-new"></span>Nueva entrada</a></li>
+          </ul>
+     </nav>
+     <main>
+
+          
+<form>
+     <h2>Register</h2>
+
+     <label>Login:</label>
+     <input type="text" name="Nick" id="foco" required pattern="/^[^0-9]{1}[a-zA-Z0-9\S*]{1,19}+$/">
+     <br><br>
+     <label>Name:</label>
+     <input type="text" name="Name" required>
+     <br><br>
+     <label>Password:</label>
+     <input type="password" name="Password"  required pattern="/^[a-zA-Z0-9_\-\S*]{1,20}+$/">
+     <br><br>
+     <label class="en-linea">Repeat password:</label>
+     <input class="input-registro" type="password" name="Password2" required pattern="/^[a-zA-Z0-9_\-\S*]{1,20}+$/">
+     <br><br>
+     <label>Email:</label>
+     <input class="input-registro" type="text" name="Mail" required>
+     <br><br>
+
+<br><br>
+
+<button type="submit" name="Submit">Register</button>
+</form>
+        
+
+               
+     </main>
+     <footer> 
+          <a href="acerca.html">Acerca de</a>
+          Año de creaci&oacute;n:2017. Todos los derechos reservados &copy;
+     </footer>
+</body>
+</html>
