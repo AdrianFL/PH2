@@ -4,17 +4,16 @@
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1" />     <link rel="stylesheet" href="css/index.css">
      <link rel="stylesheet" href="fontello/css/fontello.css">
-     <script src="javascript/registro.js"></script>
      <script src="javascript/index.js"></script>
      <title>Sandbox: Registro</title>
 </head>
-<body>
+<body onload="inicializarRegistro()">
 
      <header>
           <img src="resources/logo.jpg" alt="Logotipo">
           <div>
                <h1>Sandbox</h1>
-               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, ullam.</p>
+               <p>Foro de opini&oacute;n p&uacute;blica sobre temas variados.</p>
           </div>
      </header>
 <input type="checkbox" id="ckb-menu">
@@ -33,7 +32,7 @@
      <main>
 
           
-<form id="formregistro" onsubmit="registrarse(this); return false;">
+<form id="formregistro" onsubmit="registro(this); return false;">
      <h2 id="tituloregistro">Registro</h2>
 
      <label for="login"><b>Login:</b></label>
@@ -45,7 +44,8 @@
      <label for="pass"><b>Contrase&ntilde;a:</b></label>
      <input type="password" name="pwd" required id="pwd" placeholder="Contraseña">
      <label for="pass2"><b>Repite la contrase&ntilde;a:</b></label>
-     <input class="input-registro" type="password" name="pwd2" required id="pwd2" placeholder="Repite contraseña">
+     <input class="input-registro" onkeydown="comprobarpass(this)" type="password" name="pwd2" required id="pwd2" placeholder="Repite contraseña">
+     <p id="compass"></p>
      <label for="mail"><b>Correo:</b></label>
      <input class="input-registro" type="text" name="Mail" required id="mail" placeholder="Email">
      <input type="submit" id="buttonregistro" value="Registrarse">

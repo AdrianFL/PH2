@@ -748,3 +748,68 @@ function anyadirformularionewentry()
 	html+='</div>';
 	document.getElementById("zonadefotos").innerHTML+=html;
 }
+
+function inicializarRegistro()
+{
+	redirigirLogueados();
+	comprobarLogin();
+	return false;
+}
+
+function registro(frm)
+{
+	let xhr = new XMLHttpRequest();
+	let url = 'http://localhost/practica2/rest/usuario/';
+	let fd = new FormData();
+	fd.append('login', frm.login.value);
+	fd.append('pwd', frm.pwd.value);
+	fd.append('pwd2', frm.pwd2.value);
+	fd.append('nombre', frm.nombre.value);
+	fd.append('email', frm.mail.value);
+	xhr.open('POST', url, true);
+	xhr.send(fd);
+	xhr.onload = function(){
+		let v = JSON.parse(xhr.responseText);
+		if(v.RESULTADO == 'ok')
+		{
+			let capa_fondo = document.createElement('div');
+			let capa_frente = document.createElement('article');
+			let texto = 'Registro Correcto';
+			let html='';
+
+			capa_fondo.appendChild(capa_frente);
+			html+='<h2>MENSAJE EMERGENTE</h2>';
+			html+='<p>'+texto+'</p>';
+			html+='<button onclick="redireccionarLogin();">Cerrar</button>';
+			capa_frente.innerHTML=html;
+
+			capa_fondo.classList.add('capa-fondo');
+			capa_frente.classList.add('capa-frente');
+
+			document.body.appendChild(capa_fondo);
+		}
+	}
+	return false;
+}
+
+function redireccionarLogin()
+{
+	window.location.replace("login.html");
+	return false;
+}
+
+function comprobarpass()
+{
+	let pwd=''+document.getElementById("pwd").value;
+	let pwd2=''+document.getElementById("pwd2").value;
+	console.log(pwd);
+	console.log(pwd2);
+	if(pwd == pwd2)
+	{
+		document.getElementById("compass").innerHTML="Contrase&ntilde;as coincidentes";
+	}
+	else
+	{
+		document.getElementById("compass").innerHTML="Contrase&ntilde;as no coincidentes";
+	}
+}
