@@ -34,12 +34,13 @@
 			<li><a href="nueva-entrada.html"><span class="icon-doc-new"></span>Nueva entrada</a></li>
 		</ul>-->
 	</nav>
-	<script type="text/javascript" src="javascript/comprebalog.js"></script>
+	<script type="text/javascript" src="javascript/compruebalog.js"></script>
 
 	<main>
 	 <h2>Login</h2>	
   
 		<form id="formlogin" onsubmit="return envio(this)">
+		  <p id="loginmsg"></p>
   		  <label for="login"><b>Correo: </b></label>
    		  <input id="login" type="text" placeholder="Correo" autofocus required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9]+$/">
  		  <label for="pass" ><b>Contrase&ntilde;a: </b></label>
