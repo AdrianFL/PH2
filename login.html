@@ -2,47 +2,41 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />	<link rel="stylesheet" href="../css/index.css">
-	<link rel="stylesheet" href="../fontello/css/fontello.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="fontello/css/fontello.css">
+	<script src="javascript/index.js"></script>
 	<title>Sandbox: Login</title>
 </head>
-<body>
+<body onload="cargarLogin()">
 	
 	<div id="transparencia"></div>
-		<script type="text/javascript">
-			if(sessionStorage.getItem('logged')){
-				location.replace("index.html");
-			}	
-		</script>
-		<script type="text/javascript" src="javascript/login.js" async defer></script>
 	<header>
-		<img src="../resources/logo.jpg" alt="Logotipo">
+		<img src="resources/logo.jpg" alt="Logotipo">
 		<div>
 			<h1>Sandbox</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, ullam.</p>
+			<p>Foro de opini&oacute;n p&uacute;blica sobre temas variados.</p>
 		</div>
 	</header>
 	<input type="checkbox" id="ckb-menu">
 	<nav id="navegacion">
-		<!--<ul>
+		<ul>
 			<li><label for="ckb-menu"><span>&equiv;</span></label></li>
-			<li><a href="index.html"><span class="icon-home"></span>Indice</a></li>
-			<li><a href="buscar.html"><span class="icon-search"></span>Buscar</a></li>
-			<li><a href="login.html"><span class="icon-login"></span>Login</a></li>
-			<li><a href="registro.html"><span class="icon-user-plus"></span>Registro</a></li>
-			<li><a href=""><span class="icon-logout"></span>Logout</a></li>
-			<li><a href="nueva-entrada.html"><span class="icon-doc-new"></span>Nueva entrada</a></li>
-		</ul>-->
+			<li id="ckb-index"><a href="index.html"><span class="icon-home"></span>Indice</a></li>
+			<li id="ckb-search"><a href="buscar.html"><span class="icon-search"></span>Buscar</a></li>
+			<li id="ckb-login"><a href="login.html"><span class="icon-login"></span>Login</a></li>
+			<li id="ckb-register"><a href="registro.html"><span class="icon-user-plus"></span>Registro</a></li>
+			<li id="ckb-logout"><a onclick="cerrarSesion();" href="index.html"><span class="icon-logout"></span>Logout</a></li>
+			<li id="ckb-newentry"><a href="nueva-entrada.html"><span class="icon-doc-new"></span>Nueva entrada</a></li>
+		</ul>
 	</nav>
-	<script type="text/javascript" src="javascript/compruebalog.js"></script>
 
 	<main>
 	 <h2>Login</h2>	
   
-		<form id="formlogin" onsubmit="return envio(this)">
+		<form id="formlogin" onsubmit="return hacerLogin(this);">
 		  <p id="loginmsg"></p>
-  		  <label for="login"><b>Correo: </b></label>
-   		  <input id="login" type="text" placeholder="Correo" autofocus required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9]+$/">
+  		  <label for="login"><b>Login: </b></label>
+   		  <input id="login" type="text" placeholder="Login" autofocus required>
  		  <label for="pass" ><b>Contrase&ntilde;a: </b></label>
  		  <input id="pass" type="password" placeholder="Contrase&ntilde;a" required>  
   		  <input type="submit" value="Entrar" id="loguearse">
