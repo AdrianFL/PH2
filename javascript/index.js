@@ -310,7 +310,7 @@ function cargarComentarios(eid)
 					if(sessionStorage.getItem("Login"))
 					{
 						html+='<footer>';
-						html+='<a href="entrada.html?id='+e.id_entrada+'#comentar">Responder</a>';
+						html+='<button onclick="responderComentario(this);">Responder</button>';
 						html+='</footer>';
 					}
 				}
@@ -331,12 +331,12 @@ function cargarFormularioRespuesta()
 	{
 		if(sessionStorage.getItem("Login"))
 		{
-			let html = '<form id="comentar" onsubmit="return postearComentarios(this);">';
+			let html = '<form id="comentar" onsubmit="return postearComentario(this);">';
 			html+='<h3>Dejar un comentario:</h3>';
 			html+='<label for="titulo"><b>T&iacute;tulo:</b></label>';
-			html+='<input type="text" name="titulo" id="titulo" placeholder="T&iacute;tulo maxlength="50" required>';
+			html+='<input type="text" name="titulo" id="titulo" placeholder="T&iacute;tulo" maxlength="50" required>';
 			html+='<label for="comentario"><b>Comentario:</b></label>';
-			html+='<textarea id="comentario" required>Escribe aqu&iacute; tu comentario</textarea>';
+			html+='<textarea id="comentario" placeholder="Escribe aqu&iacute; tu comentario" required></textarea>';
 			html+='<input type="submit" value="Enviar comentario">';
 			html+='</form>';
 
@@ -366,22 +366,51 @@ function postearComentario(frm)
 			xhr.setRequestHeader('Authorization', sessionStorage.getItem("Clave"));
 			let fd = new FormData();
 			fd.append("login", sessionStorage.getItem("Login"));
-			fd.append("titulo", frm.titulo);
-			fd.append("texto", frm.comentario);
+			fd.append("titulo", frm.titulo.value);
+			fd.append("texto", frm.comentario.value);
 			let e = window.location.search;
 			let varsurl = e.split("&");
 			let id=varsurl[0].split("=")[1];
 			fd.append("id_entrada", id);
 			xhr.send(fd);
 			xhr.onload = function(){
+				console.log(xhr.responseText);
 				let v = JSON.parse(xhr.responseText);
 				if(v.RESULTADO == 'ok')
 				{
-					
+					let capa_fondo = document.createElement('div');
+					let capa_frente = document.createElement('article');
+					let texto = 'Comentario enviado correctamente';
+					let html = '';
+
+					capa_fondo.appendChild(capa_frente);
+					html+='<h2>MENSAJE EMERGENTE</h2>';
+					html+='<p>'+texto+'</p>';
+					html+='<button onclick="comentarioCorrecto(this);">Cerrar</button>';
+					capa_frente.innerHTML=html;
+
+					capa_fondo.classList.add('capa-fondo');
+					capa_frente.classList.add('capa-frente');
+
+					document.body.appendChild(capa_fondo);
 				}
 				else
 				{
-					
+					let capa_fondo = document.createElement('div');
+					let capa_frente = document.createElement('article');
+					let texto = 'Error al enviar el comentario';
+					let html = '';
+
+					capa_fondo.appendChild(capa_frente);
+					html+='<h2>MENSAJE EMERGENTE</h2>';
+					html+='<p>'+texto+'</p>';
+					html+='<button onclick="comentarioIncorrecto(this);">Cerrar</button>';
+					capa_frente.innerHTML=html;
+
+					capa_fondo.classList.add('capa-fondo');
+					capa_frente.classList.add('capa-frente');
+
+					document.body.appendChild(capa_fondo);
 				}
 			}
 		}
@@ -390,4 +419,134 @@ function postearComentario(frm)
 	{
 		alert("Tu navegador no soporta sessionStorage");
 	}
+	return false;
+}
+
+function comentarioCorrecto(t)
+{
+	t.parentNode.parentNode.remove();
+	let e = window.location.search;
+	let varsurl = e.split("&");
+	let id=varsurl[0].split("=")[1];
+	cargarComentarios(id);
+	document.getElementById("titulo").value = "";
+	document.getElementById("comentario").value = "";
+	return false;
+}
+
+function comentarioIncorrecto(t)
+{
+	t.parentNode.parentNode.remove();
+	document.getElementById("titulo").focus();
+	return false;
+}
+
+function hacerLogin(form){
+	let fd = new FormData();
+	let objetoaj = new XMLHttpRequest();
+	let url = "http://localhost/practica2/rest/login/";
+
+	objetoaj.open("POST", url, true);
+	fd.append("login", form.login.value);
+	fd.append("pwd", form.pass.value);
+	objetoaj.send(fd);
+	objetoaj.onload = function(){
+		let v = JSON.parse(objetoaj.responseText);
+		if(v.RESULTADO == 'ok')
+		{
+			if(sessionStorage)
+			{
+				sessionStorage.setItem("Login", v.login);
+				sessionStorage.setItem("Clave", v.clave);
+				sessionStorage.setItem("Nombre", v.nombre);
+				sessionStorage.setItem("Email", v.email);
+				sessionStorage.setItem("Ultimo_Acceso", v.ultimo_acceso);
+
+				let capa_fondo=document.createElement('div');
+				let capa_frente=document.createElement('article');
+				let texto='Bienvenido '+v.nombre+', tu &uacute;ltima conexi&oacute;n fue: '+v.ultimo_acceso;
+				let html='';
+
+				capa_fondo.appendChild(capa_frente);
+				html+='<h2>Inicio de sesi&oacute;n correcto</h2>';
+				html+='<p>'+texto+'</p>';
+				html+='<button onclick="document.location.href=\'index.html\'">Cerrar</button>';
+				capa_frente.innerHTML=html;
+
+				capa_fondo.classList.add('capa-fondo');
+				capa_frente.classList.add('capa-frente');
+
+				document.body.appendChild(capa_fondo);
+			}
+			else
+			{
+				alert("Tu navegador no soporta sessionStorage");
+			}
+		}
+		else
+		{
+			let capa_fondo=document.createElement('div');
+			let capa_frente=document.createElement('article');
+			let texto='Revise su Login/Contrase&ntilde;a y vuelva a intentarlo';
+			let html='';
+
+			capa_fondo.appendChild(capa_frente);
+			html+='<h2>Inicio de sesi&oacute;n incorrecto.</h2>';
+			html+='<p>'+texto+'</p>';
+			html+='<button onclick="loginFallido(this);">Cerrar</button>';
+			capa_frente.innerHTML=html;
+
+			capa_fondo.classList.add('capa-fondo');
+			capa_frente.classList.add('capa-frente');
+
+			document.body.appendChild(capa_fondo);
+
+
+		}
+
+	}
+
+	return false;
+}
+
+function loginFallido(t)
+{
+	t.parentNode.parentNode.remove();
+	document.getElementById("login").focus();
+	return false;
+}
+
+function cerrarSesion()
+{
+	sessionStorage.clear();
+	window.location.replace('http://localhost/practica2');
+}
+
+function cargarLogin()
+{
+	redirigirLogueados();
+	comprobarLogin();
+	return false;
+}
+
+function redirigirLogueados()
+{
+	if(sessionStorage)
+	{
+		if(sessionStorage.getItem("Login"))
+		{
+			window.location.replace("http://localhost/practica2");
+		}
+	}
+	else
+	{
+		alert("Tu navegador no soporta sessionStorage");
+	}
+}
+
+function responderComentario(t)
+{
+	document.getElementById("comentario").focus();
+	document.getElementById("titulo").value = "Re:"+t.parentNode.parentNode.querySelector("h4").innerHTML;
+	return false;
 }
