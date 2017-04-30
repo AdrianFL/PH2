@@ -2,59 +2,50 @@
 <html lang="es">
 <head>
      <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1" />     <link rel="stylesheet" href="../css/index.css">
-     <link rel="stylesheet" href="../fontello/css/fontello.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1" />     <link rel="stylesheet" href="css/index.css">
+     <link rel="stylesheet" href="fontello/css/fontello.css">
+     <script src="javascript/registro.js"></script>
+     <script src="javascript/index.js"></script>
      <title>Sandbox: Registro</title>
 </head>
 <body>
 
-     <div id="transparencia"></div>
-          <script type="text/javascript">
-
-
-          </script>
-
      <header>
-          <img src="../resources/logo.jpg" alt="Logotipo">
+          <img src="resources/logo.jpg" alt="Logotipo">
           <div>
                <h1>Sandbox</h1>
                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, ullam.</p>
           </div>
      </header>
-     <input type="checkbox" id="ckb-menu">
+<input type="checkbox" id="ckb-menu">
      <nav id="navegacion">
-          <!--<ul>
+          <ul>
                <li><label for="ckb-menu"><span>&equiv;</span></label></li>
-               <li><a href="index.html"><span class="icon-home"></span>Indice</a></li>
-               <li><a href="buscar.html"><span class="icon-search"></span>Buscar</a></li>
-               <li><a href="login.html"><span class="icon-login"></span>Login</a></li>
-               <li><a href="registro.html"><span class="icon-user-plus"></span>Registro</a></li>
-               <li><a href=""><span class="icon-logout"></span>Logout</a></li>
-               <li><a href="nueva-entrada.html"><span class="icon-doc-new"></span>Nueva entrada</a></li>
-          </ul>-->
+               <li id="ckb-index"><a href="index.html"><span class="icon-home"></span>Indice</a></li>
+               <li id="ckb-search"><a href="buscar.html"><span class="icon-search"></span>Buscar</a></li>
+               <li id="ckb-login"><a href="login.html"><span class="icon-login"></span>Login</a></li>
+               <li id="ckb-register"><a href="registro.html"><span class="icon-user-plus"></span>Registro</a></li>
+               <li id="ckb-logout"><a onclick="cerrarSesion();" href="index.html"><span class="icon-logout"></span>Logout</a></li>
+               <li id="ckb-newentry"><a href="nueva-entrada.html"><span class="icon-doc-new"></span>Nueva entrada</a></li>
+          </ul>
      </nav>
-     
-     <script type="text/javascript" src="javascript/registro.js" async ></script>
-     <script type="text/javascript" src="javascript/compruebalog.js" async ></script>
-
 
      <main>
 
           
-<form>
-     <h2>Registro</h2>
+<form id="formregistro" onsubmit="registrarse(this); return false;">
+     <h2 id="tituloregistro">Registro</h2>
 
-     <label for="nick"><b>Nombre de usuario:</b></label>
-     <input type="text" name="Nick" id="usr" autofocus required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9]+$/" id="nick" placeholder="Nick">
+     <label for="login"><b>Login:</b></label>
+     <input type="text" name="login" id="login" autofocus required placeholder="Login">
      <div id='msglogin'><br>No est&aacute; disponible<br></div>
      <div id='logindisponible'><br>Est&aacute; disponible<br></div>
      <label for="nombre"><b>Nombre:</b></label>
-     <input type="text" name="Name" required id="nombre" placeholder="Nombre">
+     <input type="text" name="nombre" required id="nombre" placeholder="Nombre">
      <label for="pass"><b>Contrase&ntilde;a:</b></label>
-     <input type="password" name="Password" id="pwd" required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/" id="pass" placeholder="Contraseña">
+     <input type="password" name="pwd" required id="pwd" placeholder="Contraseña">
      <label for="pass2"><b>Repite la contrase&ntilde;a:</b></label>
-     <div id='msgpwd' display="none"><br>Las contrase&ntilde;as no coindicen<br></div>
-     <input class="input-registro" type="password" name="Password2" required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/" id="pass2" placeholder="Repite contraseña">
+     <input class="input-registro" type="password" name="pwd2" required id="pwd2" placeholder="Repite contraseña">
      <label for="mail"><b>Correo:</b></label>
      <input class="input-registro" type="text" name="Mail" required id="mail" placeholder="Email">
      <input type="submit" id="buttonregistro" value="Registrarse">
