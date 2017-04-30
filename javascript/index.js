@@ -737,3 +737,14 @@ function inicializarnewentry()
 	comprobarLogin();
 	return false;
 }
+
+function anyadirformularionewentry()
+{
+	let html='<div>';
+	html+='<label for="subirfoto"><img src="resources/noshow.jpg" alt="No hay imagen seleccionada"></label>';
+	html+='<br><textarea placeholder="Descripci&oacute;n de la foto"></textarea>';
+	html+='<input type="file"><br>';
+	html+='<button>Eliminar foto</button>';	
+	html+='</div>';
+	document.getElementById("zonadefotos").innerHTML+=html;
+}
