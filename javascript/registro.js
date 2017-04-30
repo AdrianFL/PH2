@@ -1,12 +1,3 @@
-function comprobar(){
-	if(sessionStorage.getItem('logged')){
-		//acceso desde el perfil
-	}
-	else{
-		//venir de login
-	}
-}
-
 
 function crearObjeto(){
 	var xmlhttp;
@@ -20,85 +11,98 @@ function crearObjeto(){
 }
 
 
-function registro(form){
+function registrarse(form){
 	var formdata = new FormData();
-	if(sessionStorage.getItem('logged')){
+	var objetoaj = new crearObjeto();
+	var url = "http://localhost/practica2/rest/usuario/";
+	objetoaj.open("POST", url, true);
 
-		fd.append("clave", sessionStorage.getItem("clave"));
+	document.getElementById("prueba").innerHTML="ENTRO EN LA FUNCION"
 
-		fd.append("login", document.getElementById("usr").value);
-		sessionStorage.setItem("login", document.getElementById("usr").value);
+	formdata.append("pwd", form.pwd.value);
+	formdata.append("pwd2", form.pwd2.value;
+	formdata.append("login", form.login.value);
+	formdata.append("email", form.mail.value);
+	formdata.append("nombre", form.nombre.value);
+	objetoaj.send(formdata);
 
-		fd.append("email", document.getElementById("mail").value);
-		sessionStorage.setItem("email", document.getElementById("mail").value);
+	objetoaj.onload = function(){
+		var res = JSON.parse(objetoaj.responseText);
 
-		fd.append("nombre", document.getElementById("nombre").value);
-		sessionStorage.setItem("nombre", document.getElementById("nombre").value);
+		if(res.CODIGO == 400){
+			let capa_fondo = document.createElement('div');
+			let capa_frente = document.createElement('article');
+			let texto = 'Error. El Nick no es válido.';
+			let html = '';
 
-		if(document.getElementById("pass").value!=""){
-			var iguales = validaPsw(document.getElementById("pass").value, document.getElementById("pass2").value)
-			if(iguales==0){
-				fd.append("pwd", document.getElementById("pass").value);
-				fd.append("pwd2", document.getElementById("pass2").value);
-				sessionStorage.setItem("pwd", document.getElementById("pass").value);
-			}
-			else{
-				fd.append("pwd", sessionStorage.getItem("pass"));
-				fd.append("pwd2", sessionStorage.getItem("pass"));
-			}
+			capa_fondo.appendChild(capa_frente);
+			html+='<h2>MENSAJE EMERGENTE</h2>';
+			html+='<p>'+texto+'</p>';
+			html+='<button onclick="mensajelogin(this);">Cerrar</button>';
+			capa_frente.innerHTML=html;
+
+			capa_fondo.classList.add('capa-fondo');
+			capa_frente.classList.add('capa-frente');
+
+			document.body.appendChild(capa_fondo);
+		}
+		else if(res.CODIGO == 401){
+
+			let capa_fondo = document.createElement('div');
+			let capa_frente = document.createElement('article');
+			let texto = 'Error. Las contraseñas no coinciden.';
+			let html = '';
+
+			capa_fondo.appendChild(capa_frente);
+			html+='<h2>MENSAJE EMERGENTE</h2>';
+			html+='<p>'+texto+'</p>';
+			html+='<button onclick="mensajepwd(this);">Cerrar</button>';
+			capa_frente.innerHTML=html;
+
+			capa_fondo.classList.add('capa-fondo');
+			capa_frente.classList.add('capa-frente');
+
+			document.body.appendChild(capa_fondo);
+		}
+		else if(res.CODIGO == 500){
+
+			let capa_fondo = document.createElement('div');
+			let capa_frente = document.createElement('article');
+			let texto = 'Error. No se ha podido hacer el registro.';
+			let html = '';
+
+			capa_fondo.appendChild(capa_frente);
+			html+='<h2>MENSAJE EMERGENTE</h2>';
+			html+='<p>'+texto+'</p>';
+			html+='<button onclick="mensajepwd(this);">Cerrar</button>';
+			capa_frente.innerHTML=html;
+
+			capa_fondo.classList.add('capa-fondo');
+			capa_frente.classList.add('capa-frente');
+
+			document.body.appendChild(capa_fondo);
 		}
 		else{
-			fd.append("pwd", sessionStorage.getItem("pass"));
-			fd.append("pwd2", sessionStorage.getItem("pass"));
-		}
 
-		var nm = sessionStorage.getItem("nombre");
-		var ml = sessionStorage.getItem("email");
-		var ps = sessionStorage.getItem("pwd");
+			let capa_fondo = document.createElement('div');
+			let capa_frente = document.createElement('article');
+			let texto = 'Te has registrado correctamente.';
+			let html = '';
 
-	} 
-	else{
-		formadata = newFromData(form);
-		var nm = document.getElementById("nombre").value;
-		var ml = document.getElementById("mail").value;
-		var ps = document.getElementById("pass").value;
-	}
+			capa_fondo.appendChild(capa_frente);
+			html+='<h2>MENSAJE EMERGENTE</h2>';
+			html+='<p>'+texto+'</p>';
+			html+='<button onclick="GoLogin();">Cerrar</button>';
+			capa_frente.innerHTML=html;
 
-	var xmlhttp = crearObjeto();
-	var url="rest/usuario";
+			capa_fondo.classList.add('capa-fondo');
+			capa_frente.classList.add('capa-frente');
 
-	xmlhttp.onload = function(){
+			document.body.appendChild(capa_fondo);
 
-		if(xmlhttp.readyState == 4){
-			if(xmlhttp.status == 200){
-				var res = JSON.parse(xmlhttp.responseText);
-				console.log(xmlhttp.responseText);
-				sessionStorage.setItem("nombre", nm);
-				sessionStorage.setItem("email", ml);
-				sessionStorage.setItem("pwd", ps);
-				document.getElementById("usr").disabled=true;
-				document.getElementById("pass").disabled=true;
-				document.getElementById("pass2").disabled=true;
-				document.getElementById("nombre").diabled=true;
-				document.getElementById("mail").disabled=true;
-				document.getElementById("buttonregistro").disabled=true;
-
-
-				document.getElementById("transparencia").style.display="initial";
-				document.getElementById("msgpwd").style.display="none";
-
-				if(sessionStorage.getItem('logged')){
-					document.getElementById("loginmsg").innerHTML="Se han cambiado los datos correctamente. Redirigiendo.<br><input type='button' value='Cerrar' onclick='GoPerfil();'/><br>";
 				}
-				else{
-					document.getElementById("loginmsg").innerHTML="Usted se ha registrado correctamente. Redirigiendo.<br><input type='button' value='Cerrar' onclick='GoLogin();'/><br>";
-				}
-			}
-			else if(xmlhttp.status == 400){
-				validaPsw(document.getElementById("pass").value, document.getElementById("pass2").value);
-			}
-		}
-
+			
+}
 		return false;
 
 	};
@@ -106,61 +110,21 @@ function registro(form){
 
 }
 
-function validaPsw(pwd, pwd2){
-
-	if(pwd1.localeCompare(pwd2)!=0){
-
-		document.getElementById("msgpwd").style.display="initial";
-		document.getElementById("pass").value="";
-		document.getElementById("pass2").value="";
-		document.getElementById("pass").focus();
-
-		return pwd1.localeCompare(pwd2);
-	}
-	return pwd1.localeCompare(pwd2);
-
-}
-
 function GoLogin(){
 	window.location.replace("login.html");
 }
 
-function GoPerfil(){
-	window.location.replace("registro.html");
+function mensajelogin(t)
+{
+	t.parentNode.parentNode.remove();
+	document.getElementById("login").focus();
+	return false;
 }
 
-function validaUsr(){
 
-	var formdata = new FormData();
-	var xmlhttp = new XMLHttpRequest();
-	var url = "rest/login/" + document.getElementById("usr").value;
-
-	xmlhttp.onreadystatechange = procesaCambioVal;
-	xmlhttp.open("GET", url, true);
-	xmlhttp.send(fd);
-	document.getElementById("msglogin").style.display="none";
-	document.getElementById("logindisponible").style.display="none";
-	
-	function procesarCambioVal(){
-		if(xmlhttp.readyState == 4){
-			if(xmlhttp.status == 200){
-				var res = JSON.parse(xmlhttp.responseText);
-				console.clear();
-				console.log(res.DISPONIBLE);
-				if(!res.DISPONIBLE){
-					document.getElementById("logindisponible").style.display="none";
-					document.getElementById("msglogin").style.display="block";
-				}
-				if(res.DISPONIBLE){
-					document.getElementById("msglogin").style.display="none";
-					document.getElementById("logindisponible").style.display="block";
-				}
-			}
-			else{
-
-			}
-		}
-	}
-
+function mensajepwd(t)
+{
+	t.parentNode.parentNode.remove();
+	document.getElementById("pass").focus();
 	return false;
 }
