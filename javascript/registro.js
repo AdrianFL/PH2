@@ -29,8 +29,8 @@ function registro(form){
 		fd.append("login", document.getElementById("usr").value);
 		sessionStorage.setItem("login", document.getElementById("usr").value);
 
-		fd.append("mail", document.getElementById("mail").value);
-		sessionStorage.setItem("mail", document.getElementById("mail").value);
+		fd.append("email", document.getElementById("mail").value);
+		sessionStorage.setItem("email", document.getElementById("mail").value);
 
 		fd.append("nombre", document.getElementById("nombre").value);
 		sessionStorage.setItem("nombre", document.getElementById("nombre").value);
@@ -38,23 +38,23 @@ function registro(form){
 		if(document.getElementById("pass").value!=""){
 			var iguales = validaPsw(document.getElementById("pass").value, document.getElementById("pass2").value)
 			if(iguales==0){
-				fd.append("pass", document.getElementById("pass").value);
-				fd.append("pass2", document.getElementById("pass2").value);
-				sessionStorage.setItem("pass", document.getElementById("pass").value);
+				fd.append("pwd", document.getElementById("pass").value);
+				fd.append("pwd2", document.getElementById("pass2").value);
+				sessionStorage.setItem("pwd", document.getElementById("pass").value);
 			}
 			else{
-				fd.append("pass", sessionStorage.getItem("pass"));
-				fd.append("pass", sessionStorage.getItem("pass"));
+				fd.append("pwd", sessionStorage.getItem("pass"));
+				fd.append("pwd2", sessionStorage.getItem("pass"));
 			}
 		}
 		else{
-			fd.append("pass", sessionStorage.getItem("pass"));
-			fd.append("pass2", sessionStorage.getItem("pass"));
+			fd.append("pwd", sessionStorage.getItem("pass"));
+			fd.append("pwd2", sessionStorage.getItem("pass"));
 		}
 
 		var nm = sessionStorage.getItem("nombre");
-		var ml = sessionStorage.getItem("mail");
-		var ps = sessionStorage.getItem("pass");
+		var ml = sessionStorage.getItem("email");
+		var ps = sessionStorage.getItem("pwd");
 
 	} 
 	else{
@@ -74,8 +74,8 @@ function registro(form){
 				var res = JSON.parse(xmlhttp.responseText);
 				console.log(xmlhttp.responseText);
 				sessionStorage.setItem("nombre", nm);
-				sessionStorage.setItem("mail", ml);
-				sessionStorage.setItem("pass", ps);
+				sessionStorage.setItem("email", ml);
+				sessionStorage.setItem("pwd", ps);
 				document.getElementById("usr").disabled=true;
 				document.getElementById("pass").disabled=true;
 				document.getElementById("pass2").disabled=true;
