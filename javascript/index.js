@@ -1,6 +1,9 @@
 var paginaindex=0;
 var totalpaginas=0;
 var lengthpage=6;
+var totalpaginassearch=0;
+var paginaindexsearch=0;
+var urlsearch='';
 
 function mostrarUltimasEntradas()
 {
@@ -543,10 +546,194 @@ function redirigirLogueados()
 		alert("Tu navegador no soporta sessionStorage");
 	}
 }
+ 
+function redirigirNoLogueados()
+{
+	if(sessionStorage)
+	{
+		if(sessionStorage.getItem("Login"))
+		{
+
+		}
+		else
+		{
+			window.location.replace("http://localhost/practica2");
+		}
+	}
+	else
+	{
+		alert("Tu navegador no soporta sessionStorage");
+	}
+}
 
 function responderComentario(t)
 {
 	document.getElementById("comentario").focus();
 	document.getElementById("titulo").value = "Re:"+t.parentNode.parentNode.querySelector("h4").innerHTML;
+	return false;
+}
+
+function buscarEntrada(frm)
+{
+	let url = 'http://localhost/practica2/rest/entrada/';
+	let aux = false;
+
+	if(frm.titulo.value!='')
+	{
+		if(aux==false)
+		{
+			url+='?n='+frm.titulo.value;
+			aux=true;
+		}
+		else
+		{
+			url+='&n='+frm.titulo.value;
+		}
+	}
+	if(frm.autor.value!='')
+	{
+		if(aux==false)
+		{
+			url+='?l='+frm.autor.value;
+			aux=true;
+		}
+		else
+		{
+			url+='&l='+frm.autor.value;
+		}
+	}
+	if(frm.texto.value!='')
+	{
+		if(aux==false)
+		{
+			url+='?d='+frm.texto.value;
+			aux=true;
+		}
+		else
+		{
+			url+='&d='+frm.texto.value;
+		}
+	}
+	if(frm.fecha1.value!='')
+	{
+		if(aux==false)
+		{
+			url+='?fi='+frm.fecha1.value;
+			aux=true;
+		}
+		else
+		{
+			url+='&fi='+frm.fecha1.value;
+		}
+	}
+	if(frm.fecha2.value!='')
+	{
+		if(aux==false)
+		{
+			url+='?ff='+frm.fecha2.value;
+			aux=true;
+		}
+		else
+		{
+			url+='&ff='+frm.fecha2.value;
+		}
+	}
+	urlsearch=url;
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', url, true);
+	xhr.send();
+	xhr.onload = function(){
+		let v = JSON.parse(xhr.responseText);
+		totalpaginassearch = Math.floor(v.FILAS.length/lengthpage);
+		if(v.FILAS.length%lengthpage != 0)
+		{
+			totalpaginassearch++;
+		}
+		mostrarResultadosBusqueda();
+	}
+	return false;
+}
+
+function mostrarResultadosBusqueda()
+{
+	let url=urlsearch;
+	let xhr = new XMLHttpRequest();
+	url+='&pag='+paginaindexsearch+'&lpag='+lengthpage;
+	xhr.open('GET', url, true);
+	xhr.send();
+	xhr.onload = function(){
+		let v = JSON.parse(xhr.responseText);
+		let html='<h2>Resultados de b&uacute;squeda:</h2>';
+		for(let i=0; i<v.FILAS.length; i++){
+			let e = v.FILAS[i];
+				html+='<article>';
+				html+='<h2>';
+				html+='<a href="entrada.html?id='+e.id+'">'+e.nombre+'</a>';
+				html+='</h2>';
+				html+='<figure>';
+				html+='<img src="fotos/'+e.fichero+'" alt="'+e.descripcion_foto+'">';
+				html+='<figcaption>'+e.descripcion+'<footer><a href="entrada.html?id='+e.id+'">Ver mas...</a></footer></figcaption>';
+				html+='</figure>';
+				html+='<div>';
+				html+='<p>Fecha de publicaci&oacute;n:<time datetime="'+e.fecha+'">'+e.fecha+'</time></p>';
+				html+='<p>Autor:'+e.login+'</p>';
+				html+='</div>';
+				html+='<footer>';
+				html+='<p>N&uacute;mero de fotos:'+e.nfotos+'</p>';
+				html+='<p>Comentarios:'+e.ncomentarios+'</p>';
+				html+='</footer>';
+				html+='</article>';
+		}
+		let indexshow=paginaindexsearch+1;
+			html+='<footer>';
+			html+='<button onclick="firstpagesearch()"><<</button>';
+			html+='<button onclick="previouspagesearch()"><</button>';
+			html+='<button onclick="nextpagesearch()">></button>';
+			html+='<button onclick="lastpagesearch()">>></button>';
+			html+='<p> P&aacute;gina '+indexshow+' de '+totalpaginassearch+'</p>';
+			html+='</footer>';
+			document.getElementById("imprimirbusqueda").innerHTML=html;
+	}
+	return false;
+}
+
+function firstpagesearch()
+{
+	paginaindexsearch=0;
+	mostrarResultadosBusqueda();
+	return false;
+}
+
+function previouspagesearch()
+{
+	if(paginaindexsearch > 0)
+	{
+		paginaindexsearch--;
+		mostrarResultadosBusqueda();
+	}
+	return false;
+}
+
+function nextpagesearch()
+{
+	if(paginaindexsearch < totalpaginassearch-1)
+	{
+		paginaindexsearch++;
+		mostrarResultadosBusqueda();
+	}
+	return false;
+}
+
+function lastpagesearch()
+{
+	paginaindexsearch=totalpaginassearch-1;
+	mostrarResultadosBusqueda();
+	return false;
+}
+
+function inicializarnewentry()
+{
+	redirigirNoLogueados();
+	comprobarLogin();
 	return false;
 }
