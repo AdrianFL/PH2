@@ -20,7 +20,7 @@ function registrarse(form){
 	document.getElementById("prueba").innerHTML="ENTRO EN LA FUNCION"
 
 	formdata.append("pwd", form.pwd.value);
-	formdata.append("pwd2", form.pwd2.value;
+	formdata.append("pwd2", form.pwd2.value);
 	formdata.append("login", form.login.value);
 	formdata.append("email", form.mail.value);
 	formdata.append("nombre", form.nombre.value);
