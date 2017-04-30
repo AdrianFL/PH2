@@ -4,26 +4,27 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="fontello/css/fontello.css">
+	<script src="javascript/index.js"></script>
 	<title>Sandbox</title>
 </head>
-<body>
+<body onload="inicializarEntrada()">
 	<header>
 		<img src="resources/logo.jpg" alt="Logotipo">
 		<div>
 			<h1>Sandbox</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, ullam.</p>
+			<p>Foro de opini&oacute;n p&uacute;blica sobre temas variados.</p>
 		</div>
 	</header>
 	<input type="checkbox" id="ckb-menu">
 	<nav>
 		<ul>
 			<li><label for="ckb-menu"><span>&equiv;</span></label></li>
-			<li><a href="index.html"><span class="icon-home"></span>Indice</a></li>
-			<li><a href="buscar.html"><span class="icon-search"></span>Buscar</a></li>
-			<li><a href="login.html"><span class="icon-login"></span>Login</a></li>
-			<li><a href="registro.html"><span class="icon-user-plus"></span>Registro</a></li>
-			<li><a href=""><span class="icon-logout"></span>Logout</a></li>
-			<li><a href="nueva-entrada.html"><span class="icon-doc-new"></span>Nueva entrada</a></li>
+			<li id="ckb-index"><a href="index.html"><span class="icon-home"></span>Indice</a></li>
+			<li id="ckb-search"><a href="buscar.html"><span class="icon-search"></span>Buscar</a></li>
+			<li id="ckb-login"><a href="login.html"><span class="icon-login"></span>Login</a></li>
+			<li id="ckb-register"><a href="registro.html"><span class="icon-user-plus"></span>Registro</a></li>
+			<li id="ckb-logout"><a href=""><span class="icon-logout"></span>Logout</a></li>
+			<li id="ckb-newentry"><a href="nueva-entrada.html"><span class="icon-doc-new"></span>Nueva entrada</a></li>
 		</ul>
 	</nav>
 	<main>
@@ -59,8 +60,8 @@
 				</figure>
 				</div>
 			</section>
-			<section>
-				<h3 id="comentarios">Comentarios:</h3>
+			<section id="comentarios">
+				<h3>Comentarios:</h3>
 
 			<article>
 				<header>
@@ -110,15 +111,6 @@
 				</footer>
 			</article>
 			</section>
-
-				<form id="comentar">
-					<h3>Dejar un comentario:</h3>
-					<label for="titulo"><b>Título:</b></label>
-					<input type="text" name="titulo" id="titulo" placeholder="T&iacute;tulo" maxlength="50" required>
-					<label for="comentario"><b>Comentario:</b></label>
-					<textarea id="comentario" required>Escribe aquí tu comentario</textarea>
-					<input type="submit" value="Enviar comentario">
-				</form>	
 	</main>
 	<footer> 
 		<a href="acerca.html">Acerca de</a>
