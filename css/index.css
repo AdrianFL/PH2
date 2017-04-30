@@ -371,8 +371,19 @@ body{
 		to   { opacity: 1; }
 	}
 
-	/*PERO NO FUNCIONA JAJAJAJA*/
 
+
+#msglogin, #msgpwd{
+	display: none;
+	background-color: red;
+}
+
+#logindisponible{
+	display: none;
+	background-color: green;
+}
+
+	/*PERO NO FUNCIONA JAJAJAJA*/
 
 @media all and (min-width:480px){
 		body>header{
