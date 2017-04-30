@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
      <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1" />     <link rel="stylesheet" href="../css/index.css">
-     <link rel="stylesheet" href="../fontello/css/fontello.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1" />     <link rel="stylesheet" href="css/index.css">
+     <link rel="stylesheet" href="fontello/css/fontello.css">
      <title>Sandbox</title>
 </head>
 <body>
      <header>
-          <img src="../resources/logo.jpg" alt="Logotipo">
+          <img src="resources/logo.jpg" alt="Logotipo">
           <div>
                <h1>Sandbox</h1>
                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, ullam.</p>
@@ -30,27 +30,19 @@
 
           
 <form>
-     <h2>Register</h2>
+     <h2>Registro</h2>
 
-     <label>Login:</label>
-     <input type="text" name="Nick" autofocus required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9]+$/">
-     <br><br>
-     <label>Name:</label>
-     <input type="text" name="Name" required>
-     <br><br>
-     <label>Password:</label>
-     <input type="password" name="Password"  required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/">
-     <br><br>
-     <label class="en-linea">Repeat password:</label>
-     <input class="input-registro" type="password" name="Password2" required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/">
-     <br><br>
-     <label>Email:</label>
-     <input class="input-registro" type="text" name="Mail" required>
-     <br><br>
-
-<br><br>
-
-<button type="submit" name="Submit">Register</button>
+     <label for="nick"><b>Nombre de usuario:</b></label>
+     <input type="text" name="Nick" autofocus required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9]+$/" id="nick" placeholder="Nick">
+     <label for="nombre"><b>Nombre:</b></label>
+     <input type="text" name="Name" required id="nombre" placeholder="Nombre">
+     <label for="pass"><b>Contrase&ntilde;a:</b></label>
+     <input type="password" name="Password"  required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/" id="pass" placeholder="Contraseña">
+     <label for="pass2"><b>Repite la contrase&ntilde;a:</b></label>
+     <input class="input-registro" type="password" name="Password2" required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/" id="pass2" placeholder="Repite contraseña">
+     <label for="mail"><b>Correo:</b></label>
+     <input class="input-registro" type="text" name="Mail" required id="mail" placeholder="Email">
+     <input type="submit" value="Registrarse">
 </form>
         
 
