@@ -2,13 +2,20 @@
 <html lang="es">
 <head>
      <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1" />     <link rel="stylesheet" href="css/index.css">
-     <link rel="stylesheet" href="fontello/css/fontello.css">
-     <title>Sandbox</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1" />     <link rel="stylesheet" href="../css/index.css">
+     <link rel="stylesheet" href="../fontello/css/fontello.css">
+     <title>Sandbox: Registro</title>
 </head>
 <body>
+
+     <div id="transparencia"></div>
+          <script type="text/javascript">
+
+
+          </script>
+
      <header>
-          <img src="resources/logo.jpg" alt="Logotipo">
+          <img src="../resources/logo.jpg" alt="Logotipo">
           <div>
                <h1>Sandbox</h1>
                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, ullam.</p>
@@ -26,6 +33,10 @@
                <li><a href="nueva-entrada.html"><span class="icon-doc-new"></span>Nueva entrada</a></li>
           </ul>
      </nav>
+     
+     <script type="text/javascript" src="javascript/registro.js" async ></script>
+
+
      <main>
 
           
@@ -33,16 +44,17 @@
      <h2>Registro</h2>
 
      <label for="nick"><b>Nombre de usuario:</b></label>
-     <input type="text" name="Nick" autofocus required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9]+$/" id="nick" placeholder="Nick">
+     <input type="text" name="Nick" id="usr" autofocus required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9]+$/" id="nick" placeholder="Nick">
      <label for="nombre"><b>Nombre:</b></label>
      <input type="text" name="Name" required id="nombre" placeholder="Nombre">
      <label for="pass"><b>Contrase&ntilde;a:</b></label>
-     <input type="password" name="Password"  required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/" id="pass" placeholder="Contraseña">
+     <input type="password" name="Password" id="pwd" required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/" id="pass" placeholder="Contraseña">
      <label for="pass2"><b>Repite la contrase&ntilde;a:</b></label>
+     <div id='msgpwd' display="none"><br>Las contrase&ntilde;as no coindicen<br></div>
      <input class="input-registro" type="password" name="Password2" required pattern="/^[^0-9]{1}[\S*][a-zA-Z0-9_\-\S*]+$/" id="pass2" placeholder="Repite contraseña">
      <label for="mail"><b>Correo:</b></label>
      <input class="input-registro" type="text" name="Mail" required id="mail" placeholder="Email">
-     <input type="submit" value="Registrarse">
+     <input type="submit" id="buttonregistro" value="Registrarse">
 </form>
         
 

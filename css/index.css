@@ -339,6 +339,41 @@ body{
 	body>main>section>h3{
 		margin-left:2em;
 	}
+
+	/*SE SUPONE QUE ESTO ES PARA APARECER Y DESAPARECER LOS MENSAJES*/
+
+#loginmsg{
+	display: none;
+	background-color: white;
+   position: fixed;
+    left: 100px;
+    top: 150px;
+	padding: 50px;
+	width: 210px;
+	z-index: 8;
+	margin-right: 15px;
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+  position: absolute;
+	top: 170px;
+
+			-webkit-animation: fadein .5s; /* Safari, Chrome and Opera > 12.1 */
+		-moz-animation: fadein .5s; /* Firefox < 16 */
+		-ms-animation: fadein .5s; /* Internet Explorer */
+		-o-animation: fadein .5s; /* Opera < 12.1 */
+		animation: fadein .5s;
+
+}
+
+	@keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	/*PERO NO FUNCIONA JAJAJAJA*/
+
+
 @media all and (min-width:480px){
 		body>header{
 			flex-direction: row;
